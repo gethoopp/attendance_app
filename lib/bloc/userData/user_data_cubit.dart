@@ -8,9 +8,13 @@ class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit() : super(UserDataInitial());
 
   //cubit untuk memanggil data user berdasarkan id
-  void userGetData(int id) {
+  void userGetData(int id) async{
     final BaseUserRepository userRepository;
 
-    try {} catch (e) {}
+    try {
+      // final reesult = userRepository.getUserData();
+    } catch (e) {
+
+    }
   }
 }

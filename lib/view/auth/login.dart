@@ -1,3 +1,4 @@
+import 'package:attendance_app/extension/string_validate.dart';
 import 'package:attendance_app/widget/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +11,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
+  TextEditingController emailContoller = TextEditingController();
+  TextEditingController passContoller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -58,9 +61,31 @@ class LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.only(top: size.height * 0.05),
                 child: Column(
                   children: [
-                    buttonLogin(size, text: 'Email', obs: false),
+                    buttonLogin(size,
+                        text: 'Email',
+                        obs: false,
+                        controll: emailContoller,
+                        validator: (text) => text.validateEmail,
+                        onChanged: (value) {
+                          setState(() {
+                            emailContoller.text = value;
+                          });
+                          return value;
+                        }),
                     const SizedBox(height: 20),
-                    buttonLogin(size, text: 'Password', obs: true)
+                    buttonLogin(size,
+                        text: 'Password',
+                        obs: true,
+                        controll: passContoller,
+                        validator: (text) => text.validatePassword,
+                        onChanged: (value) {
+                          setState(() {
+                            passContoller.text = value;
+                          });
+                          return value;
+                        }
+                        
+                        )
                   ],
                 ),
               ),
